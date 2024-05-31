@@ -5,7 +5,7 @@ class County(models.Model):
     # Django fields corresponding to attributes in shapefile.
     name = models.CharField(max_length=60)
     area_code = models.CharField(max_length=3)
-    descriptio = models.CharField(max_length=50)
+    description = models.CharField(max_length=50)
     file_name = models.CharField(max_length=50)
     number = models.FloatField()
     number0 = models.FloatField()
@@ -15,9 +15,9 @@ class County(models.Model):
     hectares = models.FloatField()
     area = models.FloatField()
     type_code = models.CharField(max_length=2)
-    descript0 = models.CharField(max_length=25)
-    type_cod0 = models.CharField(max_length=3, null=True)
-    descript1 = models.CharField(max_length=25, null=True)
+    description0 = models.CharField(max_length=25)
+    type_code0 = models.CharField(max_length=3, null=True)
+    description1 = models.CharField(max_length=25, null=True)
     # GeoDjango-specific: a geometry field (MultiPolygonField)
     geom = models.MultiPolygonField(srid=27700)
 
