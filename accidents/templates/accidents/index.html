@@ -2,18 +2,74 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A webGIS application online visualization of accident statistics and charts for England."
+    />
+    <meta name="author" content="Calvin Opiti, https://opiticonsulting.com" />
+    <meta
+      name="keywords"
+      content="Opiti Inc, Calvin Opiti, Opiti, Geospatial Engineer, SpatioTemporal, Opiti Consulting"
+    />
     <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR" />
+
     <title>Country Accident Data</title>
+
     <link
-      href="{% static 'accidents/lib/bootstrap/css/bootstrap.min.css' %}"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static 'favicons/apple-touch-icon.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static 'favicons/favicon-32x32.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="194x194"
+      href="{% static 'favicons/favicon-194x194.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="{% static 'favicons/android-chrome-192x192.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'favicons/favicon-16x16.png' %}"
+    />
+    <link rel="manifest" href="{% static 'favicons/site.webmanifest' %}" />
+    <link
+      rel="mask-icon"
+      href="{% static 'favicons/safari-pinned-tab.svg' %}"
+      color="#5bbad6"
+    />
+    <meta name="msapplication-TileColor" content="#00aba9" />
+    <meta
+      name="msapplication-TileImage"
+      content="{% static 'favicons/mstile-144x144.png' %}"
+    />
+    <meta name="theme-color" content="#ffffff" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link href="{% static 'accidents/css/theme.min.css' %}" rel="stylesheet" />
     <link href="{% static 'accidents/css/accidents.css' %}" rel="stylesheet" />
     <link
-      href="{% static 'accidents/lib/openlayers/ol.css' %}"
+      href="https://cdn.jsdelivr.net/npm/ol@v9.2.4/ol.css"
       rel="stylesheet"
     />
+    <link href="{% static 'accidents/css/spinner.css' %}" rel="stylesheet" />
   </head>
   <body>
     <nav role="navigation" class="navbar navbar-default">
@@ -22,35 +78,52 @@
       </div>
     </nav>
     <div class="container-fluid">
-      <div class="row">
+      <div class="row" style="height: 85vh; width: 100%">
+        <div class="col-md-8 main-content">
+          <div id="map" class="map" style="height: 100%; width: 100%"></div>
+        </div>
         <div class="col-md-4 sidebar">
           <div id="comments">Click on a county to load the accident data.</div>
+          <hr />
+          <div id="chartDiv"></div>
         </div>
-        <div class="col-md-8 main-content">
-          <div id="map" class="map"></div>
-        </div>
+        <div hidden id="spinner"></div>
       </div>
     </div>
     <footer class="footer">
       <div>
-        <p>Contains OS data &copy; Crown copyright and database right (2016)</p>
+        <p class="m-0 text-center">
+          Developed By
+          <a href="https://www.opiticonsulting.com" target="_blank"
+            >Opiti Consulting</a
+          >
+          | &copy;
+          <script type="text/javascript">
+            document.write(new Date().getFullYear());
+          </script>
+        </p>
       </div>
     </footer>
     <script
-      type="text/javascript"
-      src="{% static 'accidents/lib/jquery/jquery-3.2.1.min.js' %}"
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
     ></script>
     <script
       type="text/javascript"
-      src="{% static 'accidents/lib/bootstrap/js/bootstrap.min.js' %}"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     ></script>
     <script
       type="text/javascript"
-      src="{% static 'accidents/lib/openlayers/ol.js' %}"
+      src="https://cdn.jsdelivr.net/npm/ol@v9.2.4/dist/ol.js"
     ></script>
     <script
       type="text/javascript"
       src="{% static 'accidents/js/accidents.js' %}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"
     ></script>
   </body>
 </html>
