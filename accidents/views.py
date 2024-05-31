@@ -5,10 +5,6 @@ from django.views.generic import View, TemplateView
 from django.core.serializers import serialize
 from .models import County, Accident
 
-# Create your views here.
-def index(request):
-    return HttpResponse("Hello, world. You're at the accidents index.")
-
 class IndexView(TemplateView):
     template_name = "accidents/index.html"
 
@@ -33,5 +29,15 @@ class AccidentsGeoJSON(View):
         if county:
             geojson = serialize('geojson', Accident.objects.filter(geom__within=county.geom),
                                 geometry_field='geom',
-                                fields=('accident_index','accident_severity'))
+                                fields=('accident_index','accident_severity','number_of_vehicles','number_of_casualties'))
         return HttpResponse(geojson)
+
+# class AccidentsStatistics(View):
+#     def get(self,request):
+#         """
+#         Retrieve accidents statistics based on a selected county.
+#         """
+#         # get counry from county name in request
+#         county = County.objects.filter(name=request.GET.get('county')).first()
+#         if county:
+#             geojson = serialize('geojson', Accident.objects.filter)
